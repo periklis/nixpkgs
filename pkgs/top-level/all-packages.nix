@@ -734,6 +734,16 @@ with pkgs;
 
   kwm = callPackage ../os-specific/darwin/kwm { };
 
+  chunkwm = callPackage ../os-specific/darwin/chunkwm {
+    inherit (darwin.apple_sdk.frameworks) ApplicationServices Carbon Cocoa;
+  };
+
+  chunkwmWithPlugins = chunkwm.override {
+    withTiling = true;
+    withBorder = true;
+    withFfm = true;
+  };
+
   khd = callPackage ../os-specific/darwin/khd {
     inherit (darwin.apple_sdk.frameworks) Carbon Cocoa;
   };
